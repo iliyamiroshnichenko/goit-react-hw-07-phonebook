@@ -1,0 +1,26 @@
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form > label {
+  margin-bottom: 15px;
+}
+
+.form input {
+  margin-left: 15px;
+  width: 200px;
+}
+
+.form > button {
+  padding: 5px;
+  width: 150px;
+  background-color: rgb(179, 220, 253);
+  border: 2px solid rgb(144, 204, 253);
+  border-radius: 10px;
+}
+
+.form > button:hover {
+  transform: scale(1.1);
+  background-color: rgb(144, 204, 253);
+}

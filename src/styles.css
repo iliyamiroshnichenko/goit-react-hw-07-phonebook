@@ -1,0 +1,24 @@
+body {
+  margin: 0;
+  background-color: #fff;
+  background-image: url('https://cdn.pixabay.com/photo/2015/05/05/09/42/paper-753508_960_720.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #2a2a2a;
+  line-height: 1.5;
+  padding: 0 10px;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* ul {
+  list-style: none;
+} */
