@@ -13,7 +13,7 @@ const doesContactExist = (state, { payload }) => {
 };
 
 const items = createReducer([], {
-  [actions.addContact]: doesContactExist,
+  addContactSuccess: doesContactExist,
   [actions.deleteContact]: (state, { payload }) =>
     state.filter(({ id }) => id !== payload),
 });
