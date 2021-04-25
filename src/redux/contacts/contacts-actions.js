@@ -1,31 +1,32 @@
 // import shortid from 'shortid';
 import { createAction } from '@reduxjs/toolkit';
-import axios from 'axios';
 
-axios.defaults.baseURL = 'http://localhost:4040';
+const fetchContactRequest = createAction('contacts/fetchContactRequest');
+const fetchContactSuccess = createAction('contacts/fetchContactSuccess');
+const fetchContactError = createAction('contacts/fetchContactError');
 
-const addContact = (name, number) => dispatch => {
-  const contact = { name, number };
-  dispatch({ type: 'contacts/addContactRequest' });
-  axios
-    .post('/contacts', contact)
-    .then(({ data }) =>
-      dispatch({ type: 'contacts/addContactSuccess', payload: data }),
-    )
-    .catch(err => dispatch({ type: 'contacts/addContactError', payload: err }));
-};
+const addContactRequest = createAction('contacts/addContactRequest');
+const addContactSuccess = createAction('contacts/addContactSuccess');
+const addContactError = createAction('contacts/addContactError');
 
-// const addContact = createAction('contacts/add', (name, number) => ({
-//   payload: {
-//     id: shortid.generate(),
-//     name,
-//     number,
-//   },
-// }));
+// const deleteContact = createAction('contacts/delete');
 
-const deleteContact = createAction('contacts/delete');
+const deleteContactRequest = createAction('contacts/deleteContactRequest');
+const deleteContactSuccess = createAction('contacts/deleteContactSuccess');
+const deleteContactError = createAction('contacts/deleteContactError');
 
 const changeFilter = createAction('contacts/changeFilter');
 
 // eslint-disable-next-line
-export default { addContact, deleteContact, changeFilter };
+export default {
+  fetchContactRequest,
+  fetchContactSuccess,
+  fetchContactError,
+  addContactRequest,
+  addContactSuccess,
+  addContactError,
+  deleteContactRequest,
+  deleteContactSuccess,
+  deleteContactError,
+  changeFilter,
+};
