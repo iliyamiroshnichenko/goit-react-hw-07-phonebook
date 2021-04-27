@@ -23,20 +23,36 @@ const fetchContacts = () => async dispatch => {
   } catch (error) {
     dispatch(fetchContactError(error));
   }
-  //   axios
-  //     .get('/contacts')
-  //     .then(({ data }) => dispatch(fetchContactSuccess(data)))
-  //     .catch(err => dispatch(fetchContactError(err)));
 };
 
-const addContact = (name, number) => dispatch => {
+const addContact = (name, number) => async dispatch => {
   const contact = { name, number };
-  dispatch(addContactRequest());
-  axios
-    .post('/contacts', contact)
-    .then(({ data }) => dispatch(addContactSuccess(data)))
-    .catch(err => dispatch(addContactError(err)));
+  dispatch(fetchContactRequest());
+  try {
+    const { data } = await axios.get(`/contacts?name=${name}`);
+    if (data[0].name === name) {
+      alert(`${name} is already in contacts`);
+      dispatch(fetchContactSuccess());
+      return;
+    }
+    dispatch(addContactRequest());
+    axios
+      .post('/contacts', contact)
+      .then(({ data }) => dispatch(addContactSuccess(data)))
+      .catch(err => dispatch(addContactError(err)));
+  } catch (error) {
+    dispatch(fetchContactError(error));
+  }
 };
+
+// const addContact = (name, number) => dispatch => {
+//   const contact = { name, number };
+//   dispatch(addContactRequest());
+//   axios
+//     .post('/contacts', contact)
+//     .then(({ data }) => dispatch(addContactSuccess(data)))
+//     .catch(err => dispatch(addContactError(err)));
+// };
 
 const deleteContact = contactId => dispatch => {
   dispatch(deleteContactRequest());
