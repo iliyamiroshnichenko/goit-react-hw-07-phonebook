@@ -5,7 +5,7 @@ import Filter from './components/Filter';
 import Spinner from './components/Loader';
 import { connect } from 'react-redux';
 import { useEffect } from 'react';
-import contactsOperations from './redux/contacts/contacts-operations';
+import { contactsOperations, contactsSelectors } from './redux/contacts';
 
 const App = ({ isLoading, isError, fetchContacts }) => {
   // eslint-disable-next-line
@@ -28,9 +28,9 @@ const App = ({ isLoading, isError, fetchContacts }) => {
   );
 };
 
-const mapStateToProps = ({ contacts: { loading, error } }) => ({
-  isLoading: loading,
-  isError: error,
+const mapStateToProps = state => ({
+  isLoading: contactsSelectors.getLoading(state),
+  isError: contactsSelectors.getError(state),
 });
 
 const mapDispatchToProps = dispatch => ({
